@@ -12,6 +12,22 @@ import (
 )
 
 func main() {
+
+	c := make(chan int, 1)
+
+	close(c)
+
+	for {
+		select {
+		case v, ok := <-c:
+			fmt.Printf("%d,%v", v, ok)
+			time.Sleep(time.Second * 1)
+		}
+	}
+	fmt.Println("over")
+}
+
+func Main1() {
 	fmt.Println("vim-go")
 	ctx, _ := context.WithTimeout(context.Background(), time.Second*10)
 	eventProcessor := NewDefaultEventProcessor(WithContext(ctx), WithWorkerLimit(10))

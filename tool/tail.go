@@ -31,7 +31,7 @@ func main() {
 	}
 	buffers := make([]byte, 1024)
 	for {
-		stat, err := os.Stat(fileName)
+		stat, err := f.Stat()
 		if err != nil {
 			fmt.Println(err)
 			return
